@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path' | { read -r f; git -C /Users/dhunpatel/Documents/property_tree_house add \"$f\" && git -C /Users/dhunpatel/Documents/property_tree_house commit -m \"Auto-save: $(basename $f)\" && git -C /Users/dhunpatel/Documents/property_tree_house push; } 2>/dev/null || true",
+            "statusMessage": "Pushing to GitHub..."
+          }
+        ]
+      }
+    ]
+  }
+}
