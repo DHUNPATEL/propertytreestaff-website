@@ -652,7 +652,7 @@
   </footer>
 
   <script>
-    document.getElementById('inspectionForm').addEventListener('submit', function(e) {
+    document.getElementById('inspectionForm').addEventListener('submit', async function(e) {
       e.preventDefault();
 
       const name = document.getElementById('fullName').value.trim();
@@ -669,8 +669,26 @@
         return;
       }
 
-      this.style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
+      const btn = this.querySelector('button[type="submit"]');
+      btn.textContent = 'Submitting...';
+      btn.disabled = true;
+
+      const formData = new FormData(this);
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        this.style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      } else {
+        btn.textContent = 'Register for Inspection';
+        btn.disabled = false;
+        alert('Something went wrong. Please try again or call us on 0468 448 490.');
+      }
     });
   </script>
 
