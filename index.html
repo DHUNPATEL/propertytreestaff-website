@@ -403,5 +403,30 @@
   </div>
 </footer>
 
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contactBtn');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: new FormData(this)
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        this.querySelectorAll('input:not([type=hidden]),textarea').forEach(el => el.value = '');
+        document.getElementById('contactSuccess').style.display = 'block';
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+      } else {
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+        alert('Something went wrong. Please call us on 0468 448 490.');
+      }
+    });
+  </script>
 </body>
 </html>
