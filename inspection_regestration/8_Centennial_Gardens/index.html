@@ -654,13 +654,16 @@
   </footer>
 
   <script>
-    document.getElementById('inspectionForm').addEventListener('submit', async function(e) {
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxdVRr0btG_uFhE4QqdVrv20YL6fgeqTo59kYsVbWt-4vmC5KLmuyGjJt4vdOmM3C91/exec';
+
+    document.getElementById('inspectionForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
       const name = document.getElementById('fullName').value.trim();
       const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
 
-      if (!name || !email) {
+      if (!name || !email || !phone) {
         alert('Please fill in all fields.');
         return;
       }
@@ -675,22 +678,23 @@
       btn.textContent = 'Submitting...';
       btn.disabled = true;
 
-      const formData = new FormData(this);
-      const response = await fetch('https://api.web3forms.com/submit', {
+      fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        body: formData
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          phone: phone,
+          property: '8/8 Centennial Gardens, Hillarys WA 6025',
+          time_slot: 'Saturday 16 May 2026, 12:00 PM – 2:00 PM'
+        })
       });
 
-      const data = await response.json();
-
-      if (data.success) {
-        this.style.display = 'none';
+      setTimeout(() => {
+        document.getElementById('inspectionForm').style.display = 'none';
         document.getElementById('successMsg').style.display = 'block';
-      } else {
-        btn.textContent = 'Register for Inspection';
-        btn.disabled = false;
-        alert('Something went wrong. Please try again or call us on 0468 448 490.');
-      }
+      }, 1200);
     });
   </script>
 
