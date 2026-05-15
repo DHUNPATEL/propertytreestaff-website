@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inspection Registration – 8/8 Centennial Gardens, Hillarys WA 6025</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      min-height: 100vh;
+    }
+
+    /* Top bar */
+    .topbar {
+      background: #1a1a2e;
+      color: #ccc;
+      font-size: 13px;
+      padding: 8px 40px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+
+    .topbar a {
+      color: #ccc;
+      text-decoration: none;
+    }
+
+    /* Header */
+    header {
+      background: #fff;
+      border-bottom: 3px solid #c8a951;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+      background: #1a1a2e;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c8a951;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .logo-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1a1a2e;
+      letter-spacing: 0.5px;
+    }
+
+    .logo-text span {
+      font-size: 12px;
+      color: #888;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .header-contact {
+      font-size: 13px;
+      color: #555;
+      text-align: right;
+    }
+
+    .header-contact strong {
+      display: block;
+      font-size: 16px;
+      color: #1a1a2e;
+    }
+
+    /* Hero banner */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+      color: #fff;
+      padding: 40px 40px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #c8a951, #e8c96a, #c8a951);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #c8a951;
+      color: #1a1a2e;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 14px;
+    }
+
+    .hero h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .hero .address {
+      font-size: 15px;
+      color: #c8a951;
+      margin-bottom: 16px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      color: #ccc;
+    }
+
+    .meta-icon {
+      font-size: 16px;
+    }
+
+    /* Main layout */
+    .main {
+      max-width: 960px;
+      margin: 36px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 28px;
+    }
+
+    /* Form card */
+    .form-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .form-card-header {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 18px 26px;
+    }
+
+    .form-card-header h3 {
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .form-card-header p {
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 3px;
+    }
+
+    .form-body {
+      padding: 26px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 7px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #ddd;
+      border-radius: 5px;
+      font-size: 15px;
+      color: #333;
+      transition: border-color 0.2s;
+      background: #fafafa;
+      appearance: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus {
+      outline: none;
+      border-color: #c8a951;
+      background: #fff;
+    }
+
+    .select-wrapper {
+      position: relative;
+    }
+
+    .select-wrapper::after {
+      content: '▾';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+      pointer-events: none;
+      font-size: 16px;
+    }
+
+    .time-slot-box {
+      background: #f0f7f0;
+      border: 1.5px solid #4caf50;
+      border-radius: 5px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .time-slot-box .slot-icon {
+      font-size: 22px;
+    }
+
+    .time-slot-box .slot-info strong {
+      display: block;
+      font-size: 15px;
+      color: #2e7d32;
+    }
+
+    .time-slot-box .slot-info span {
+      font-size: 12px;
+      color: #555;
+    }
+
+    .slot-check {
+      margin-left: auto;
+      background: #4caf50;
+      color: #fff;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: #c8a951;
+      color: #1a1a2e;
+      border: none;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 5px;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+      margin-top: 4px;
+    }
+
+    .btn-submit:hover {
+      background: #b8952d;
+    }
+
+    .form-note {
+      font-size: 11.5px;
+      color: #999;
+      text-align: center;
+      margin-top: 12px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .info-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .info-card-header {
+      background: #c8a951;
+      color: #1a1a2e;
+      padding: 13px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .info-card-body {
+      padding: 18px 20px;
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 14px;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-row .label {
+      color: #888;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .detail-row .value {
+      font-weight: 600;
+      color: #222;
+      text-align: right;
+    }
+
+    .agent-card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .agent-avatar {
+      width: 64px;
+      height: 64px;
+      background: #1a1a2e;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c8a951;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .agent-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+
+    .agent-title {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 14px;
+    }
+
+    .agent-phone {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #1a1a2e;
+      text-decoration: none;
+      margin-bottom: 4px;
+    }
+
+    .agency-name {
+      font-size: 12px;
+      color: #c8a951;
+      font-weight: 600;
+    }
+
+    /* Success message */
+    .success-msg {
+      display: none;
+      background: #e8f5e9;
+      border: 1.5px solid #4caf50;
+      border-radius: 6px;
+      padding: 18px 20px;
+      text-align: center;
+      color: #2e7d32;
+      margin-top: 16px;
+    }
+
+    .success-msg .tick {
+      font-size: 32px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .success-msg strong {
+      font-size: 16px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .success-msg span {
+      font-size: 13px;
+      color: #555;
+    }
+
+    /* Footer */
+    footer {
+      background: #1a1a2e;
+      color: #888;
+      text-align: center;
+      padding: 18px;
+      font-size: 12px;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #c8a951;
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+      .main {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+        padding: 16px 20px;
+      }
+
+      .hero {
+        padding: 28px 20px 22px;
+      }
+
+      .hero h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="topbar">
+    <a href="#">propertytreestaff.com</a>
+    <a href="#">Contact Us</a>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <div class="logo-icon">PT</div>
+      <div class="logo-text">
+        <h1>Property Tree Staff</h1>
+        <span>Real Estate Services</span>
+      </div>
+    </div>
+    <div class="header-contact">
+      <span>Need help?</span>
+      <strong>0468 448 490</strong>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">Open for Inspection</div>
+    <h2>8/8 Centennial Gardens</h2>
+    <div class="address">
+      <a href="https://share.google/g8HX9ZdJvDNPlCCOE" target="_blank" rel="noopener" style="color:#c8a951;text-decoration:none;">
+        📍 8/8 Centennial Gardens, Hillarys WA 6025
+      </a>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-item"><span class="meta-icon">🛏</span> 3 Beds</div>
+      <div class="meta-item"><span class="meta-icon">🚿</span> 2 Baths</div>
+      <div class="meta-item"><span class="meta-icon">🚗</span> 1 Car</div>
+      <div class="meta-item"><span class="meta-icon">📐</span> 232m²</div>
+    </div>
+    <div class="hero-meta" style="margin-top:12px;">
+      <div class="meta-item"><span class="meta-icon">📅</span> Saturday 16 May 2026</div>
+      <div class="meta-item"><span class="meta-icon">🕛</span> 12:00 PM – 2:00 PM</div>
+      <div class="meta-item"><span class="meta-icon">📋</span> Registration Required</div>
+      <div class="meta-item">
+        <a href="https://www.realestate.com.au/sold/property-house-wa-hillarys-150321668" target="_blank" rel="noopener" style="color:#ccc;font-size:13px;text-decoration:underline;">View Listing ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Highlights strip -->
+  <div style="background:#fff;border-bottom:1px solid #eee;padding:16px 40px;display:flex;gap:32px;flex-wrap:wrap;justify-content:center;">
+    <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#444;">
+      <span style="font-size:20px;">🌊</span>
+      <div><strong style="display:block;color:#1a1a2e;">Lakefront &amp; Beachside</strong>Opposite lake &amp; parklands, short walk to Hillarys shops &amp; beaches</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#444;">
+      <span style="font-size:20px;">🍳</span>
+      <div><strong style="display:block;color:#1a1a2e;">Well-appointed Kitchen</strong>Gas hotplate, built-in oven, Asko dishwasher, lake views</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#444;">
+      <span style="font-size:20px;">❄️</span>
+      <div><strong style="display:block;color:#1a1a2e;">Climate Comfort &amp; Parking</strong>Split system A/C, gas heating, single garage with internal access</div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="main">
+
+    <!-- Form -->
+    <div class="form-card">
+      <div class="form-card-header">
+        <h3>Register for Inspection</h3>
+        <p>Complete the form below to secure your spot</p>
+      </div>
+      <div class="form-body">
+        <form id="inspectionForm" novalidate>
+
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g. Jane Smith" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="e.g. jane@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label>Inspection Time Slot</label>
+            <div class="time-slot-box">
+              <div class="slot-icon">🕛</div>
+              <div class="slot-info">
+                <strong>Saturday, 12:00 PM – 2:00 PM</strong>
+                <span>1 slot available — register now to confirm</span>
+              </div>
+              <div class="slot-check">✓</div>
+            </div>
+            <input type="hidden" name="timeSlot" value="Saturday 12:00 PM – 2:00 PM" />
+          </div>
+
+          <button type="submit" class="btn-submit">Register for Inspection</button>
+
+          <p class="form-note">By registering you agree to our privacy policy. A confirmation will be sent to your email.</p>
+        </form>
+
+        <div class="success-msg" id="successMsg">
+          <span class="tick">✅</span>
+          <strong>You're registered!</strong>
+          <span>A confirmation has been sent to your email. We look forward to seeing you at 8/8 Centennial Gardens, Hillarys on Saturday 16 May 2026, 12:00 PM – 2:00 PM.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+      <div class="info-card">
+        <div class="info-card-header">Inspection Details</div>
+        <div class="info-card-body">
+          <div class="detail-row">
+            <span class="label">Address</span>
+            <span class="value">8/8 Centennial Gardens,<br>Hillarys WA 6025</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Date</span>
+            <span class="value">Saturday 16 May 2026</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Time</span>
+            <span class="value">12:00 PM – 2:00 PM</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Property</span>
+            <span class="value">House · 232m²</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Features</span>
+            <span class="value">3 bed · 2 bath · 1 car</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Building</span>
+            <span class="value">137m²</span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Map</span>
+            <span class="value"><a href="https://share.google/g8HX9ZdJvDNPlCCOE" target="_blank" rel="noopener" style="color:#c8a951;text-decoration:none;font-weight:600;">View on Maps ↗</a></span>
+          </div>
+          <div class="detail-row">
+            <span class="label">Listing</span>
+            <span class="value"><a href="https://www.realestate.com.au/sold/property-house-wa-hillarys-150321668" target="_blank" rel="noopener" style="color:#c8a951;text-decoration:none;font-weight:600;">realestate.com.au ↗</a></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-avatar">PT</div>
+        <div class="agent-name">Property Tree Staff</div>
+        <div class="agent-title">Real Estate Agent</div>
+        <a class="agent-phone" href="tel:0468448490">0468 448 490</a>
+        <div class="agency-name">propertytreestaff.com</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2026 <a href="#">Property Tree Staff</a>. All rights reserved. &nbsp;|&nbsp;
+    <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms of Use</a>
+  </footer>
+
+  <script>
+    document.getElementById('inspectionForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      if (!name || !email) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      this.style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
